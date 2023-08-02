@@ -1,0 +1,108 @@
+@import "../../sass/helpers/variables";
+@import "../../sass/helpers/mixins";
+
+.about {
+  &__left {
+    padding: 5rem;
+    align-self: flex-start;
+    position: sticky;
+    top: 5.5rem;
+    bottom: 0;
+
+    @include mw($dt) {
+      padding: 3.2rem;
+    }
+
+    @include mw($tb) {
+      position: static;
+      padding: 5rem;
+      border-bottom: 1px solid #121212;
+    }
+
+    @include mw($ph) {
+      padding: 2.857rem 1.14rem;
+    }
+  }
+
+  &__right {
+    border-left: 1px solid #121212;
+
+    @include mw($tb) {
+      border-left: 0;
+    }
+
+    a {
+      display: inline-block;
+      text-transform: uppercase;
+
+      @include mw($ph) {
+        display: block;
+      }
+    }
+  }
+
+  &__block {
+    padding: 5rem;
+
+    & + .about__block {
+      border-top: 1px solid #121212;
+    }
+
+    @include mw($dt) {
+      padding: 3.2rem;
+    }
+
+    @include mw($tb) {
+      padding: 5rem;
+    }
+
+    @include mw($ph) {
+      padding: 2.857rem 1.14rem;
+    }
+  }
+
+  &__head {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  &__subtitle {
+    font-size: 2.375rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    margin-bottom: 1rem;
+
+    @include mw($ph) {
+      font-size: 6.93vw;
+      margin-bottom: 6.4vw;
+    }
+  }
+
+  &__text {
+    font-size: 1rem;
+    font-style: normal;
+
+    line-height: 140%;
+  }
+
+  &__inner {
+    margin-bottom: 5rem;
+
+    @include mw($dt) {
+      margin-bottom: 3.2rem;
+    }
+
+    @include mw($tb) {
+      margin-bottom: 5rem;
+    }
+
+    @include mw($ph) {
+      margin-bottom: 2.857rem;
+    }
+  }
+}

@@ -1,0 +1,66 @@
+@import "../../sass/helpers/mixins";
+@import "../../sass/helpers/variables";
+
+.wedding {
+  border-bottom: 1px solid #121212;
+  &__inner {
+    height: 50vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url("../../images/wedding@2x.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    @include mw($dt) {
+      height: auto;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    width: 50%;
+
+    @include mw($dt) {
+      width: auto;
+    }
+
+    & a {
+      color: #fff;
+      text-transform: uppercase;
+      border-color: #fff;
+
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+
+  &__head {
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 120%;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  &__title {
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+
+  &__text {
+    font-style: normal;
+    font-weight: 500;
+    line-height: 140%;
+    font-size: 1.125rem;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+}

@@ -1,0 +1,122 @@
+@import "../../sass/helpers/variables";
+@import "../../sass/helpers/mixins";
+
+.header {
+  border-top: 1px solid #121212;
+  border-bottom: 1px solid #121212;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  background-color: #fff;
+  @include mw($tb) {
+    border: 0;
+  }
+
+  &__inner {
+    @include mw($tb) {
+      position: absolute;
+      width: 100%;
+      min-height: 100%;
+      transform: translateY(-100%);
+      top: 0;
+      left: 0;
+      transition: transform 0.3s, background-color 0s;
+      height: calc(100vh - 100%);
+
+      &--open {
+        top: 100%;
+        transform: translateY(0%);
+        background-color: rgba(#000, 0.3);
+        transition: transform 0.3s, background-color 1s;
+      }
+    }
+  }
+}
+.nav {
+  width: 100%;
+
+  @include mw($tb) {
+    background-color: #fff;
+  }
+  &__list {
+    // display: grid;
+    // grid-template-columns: 1fr 1fr 4fr 1fr 1fr;
+    // grid-template-rows: auto;
+    display: flex;
+
+    @include mw($tb) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  &__item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.88rem;
+    width: calc(100% / 8);
+
+    &:first-child {
+      border-right: 1px solid #121212;
+
+      @include mw($tb) {
+        border-right: 0;
+      }
+    }
+
+    &:last-child {
+      border-left: 1px solid #121212;
+      @include mw($tb) {
+        border-left: 0;
+      }
+    }
+
+    @include mw($tb) {
+      justify-content: flex-start;
+      width: 100%;
+      border-bottom: 1px solid #121212;
+    }
+
+    &--plug {
+      border-left: 1px solid #121212;
+      border-right: 1px solid #121212;
+      width: auto;
+      flex-grow: 1;
+
+      @include mw($tb) {
+        display: none;
+      }
+    }
+  }
+}
+
+.nav-head {
+  display: none;
+
+  @include mw($tb) {
+    display: flex;
+  }
+
+  &__plug {
+    flex-grow: 1;
+    border-top: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+  }
+
+  &__btn {
+    background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #121212;
+    padding: 1rem;
+    padding: 0.94rem;
+
+    & svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

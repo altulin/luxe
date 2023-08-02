@@ -1,0 +1,259 @@
+@import "../../sass/helpers/variables";
+@import "../../sass/helpers/mixins";
+
+.info {
+  padding: 5rem;
+  border-bottom: 1px solid #121212;
+  align-self: flex-start;
+  position: sticky;
+  top: 5.5rem;
+  bottom: 0;
+
+  @include mw($dt) {
+    padding: 3.2rem;
+    position: static;
+  }
+
+  @include mw($tb) {
+    padding: 5rem;
+  }
+
+  @include mw($ph) {
+    padding: 2.857rem 1.14rem;
+  }
+}
+
+.head {
+  padding-bottom: 2.9rem;
+  border-bottom: 1px solid #121212;
+
+  @include mw($ph) {
+    padding-bottom: 1.71rem;
+  }
+
+  &__title {
+    font-weight: 600;
+    line-height: 120%;
+    font-size: 4.18rem;
+    margin-bottom: 1rem;
+
+    @include mw($dt) {
+      font-size: 2.4rem;
+    }
+
+    @include mw($tb) {
+      font-size: 4.18rem;
+    }
+
+    @include mw($ph) {
+      font-size: 2.857rem;
+      margin-bottom: 1.14rem;
+    }
+  }
+
+  &__text {
+    line-height: 140%;
+    color: rgba(18, 18, 18, 0.9);
+    font-size: 1.125rem;
+
+    @include mw($dt) {
+      font-size: 0.72rem;
+    }
+
+    @include mw($tb) {
+      font-size: 1.125rem;
+    }
+  }
+}
+.down {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-top: 1.5rem;
+
+  @include mw($ph) {
+    padding-top: 1.14rem;
+  }
+
+  &__img-wrap {
+    aspect-ratio: 1 / 1;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+  }
+
+  &__left {
+    padding-right: 1.5rem;
+
+    @include mw($ph) {
+      padding-right: 1.14rem;
+    }
+  }
+
+  &__right {
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: flex-end;
+
+    @include mw($ph) {
+      padding-left: 1.14rem;
+    }
+  }
+
+  &__text {
+    font-size: 0.875rem;
+    color: rgba(18, 18, 18, 0.9);
+  }
+}
+
+.promo {
+  &__right {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include mw($tb) {
+      row-gap: 1px;
+      border-bottom: 1px solid #121212;
+    }
+  }
+}
+
+.flower {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid #121212;
+
+  &--reverse {
+    flex-direction: row-reverse;
+    border-bottom: 0;
+
+    & .flower__left {
+      order: 1;
+    }
+  }
+
+  @include mw($tb) {
+    border-bottom: 0;
+  }
+
+  &__left {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    position: relative;
+    padding: 1.5rem;
+    border-right: 1px solid #121212;
+    border-left: 1px solid #121212;
+    background-color: #fff;
+
+    &--reverse {
+      border-right: 0;
+      border-left: 0;
+    }
+
+    @include mw($tb) {
+      border-left: 0;
+      border-bottom: 0;
+    }
+  }
+  &__right {
+    background-color: #fff;
+    display: block;
+
+    &--reverse {
+      border-right: 1px solid #121212;
+      border-left: 1px solid #121212;
+
+      @include mw($tb) {
+        border-left: 0;
+      }
+    }
+  }
+
+  &__img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+
+    @include mw($ph) {
+      aspect-ratio: auto;
+      min-height: 200px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      display: block;
+      transition: transform 1s;
+
+      @include mw($ph) {
+        flex-grow: 1;
+      }
+    }
+  }
+
+  &__title {
+    font-size: 2.375rem;
+    font-weight: 500;
+    line-height: 120%;
+    position: absolute;
+    @include centered();
+    text-align: center;
+    width: 100%;
+
+    @include mw($dt) {
+      font-size: 1.52rem;
+    }
+
+    @include mw($tb) {
+      font-size: 2.375rem;
+    }
+
+    @include mw($ph) {
+      font-size: 1.85rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+
+  &__link {
+    bottom: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 120%;
+    letter-spacing: 0, 025rem;
+    color: #121212;
+    display: flex;
+    align-items: center;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  &__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-left: 0.25rem;
+    transition: transform 0.3s;
+  }
+}
+
+.js-hover {
+  .flower__img-wrap {
+    img {
+      transform: scale(1.15);
+    }
+  }
+
+  .flower__icon {
+    transform: translateX(0.4rem);
+  }
+}

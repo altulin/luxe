@@ -1,0 +1,29 @@
+@import "../../sass/helpers/variables";
+@import "../../sass/helpers/mixins";
+
+.social {
+  display: flex;
+  align-items: center;
+
+  &__link {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    & + a {
+      margin-left: 2rem;
+      @include mw($dt) {
+        margin-left: 0.6rem;
+      }
+
+      @include mw($tb) {
+        margin-left: 2rem;
+      }
+    }
+
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+}

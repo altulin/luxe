@@ -1,0 +1,268 @@
+@import "../../sass/helpers/variables";
+@import "../../sass/helpers/mixins";
+
+.product {
+  &__img-wrap {
+    width: 100%;
+    aspect-ratio: 1 / 1.05;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__right {
+    padding: 2.5rem;
+  }
+
+  &__left {
+    width: 100%;
+  }
+}
+
+.bread {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  &__item {
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    text-transform: uppercase;
+  }
+
+  &__link {
+    color: #121212;
+  }
+
+  &__current {
+    color: #808080;
+    margin-left: 0.2rem;
+  }
+}
+
+.add {
+  &__title {
+    font-size: 2.375rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 120%;
+    margin-bottom: 1rem;
+  }
+
+  &__description {
+    color: rgba(18, 18, 18, 0.9);
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 140%;
+    margin-bottom: 1.5rem;
+  }
+
+  &__swiper {
+    &-wrap {
+      position: relative;
+      padding-left: 3rem;
+      padding-right: 3rem;
+      margin-bottom: 1.5rem;
+    }
+  }
+
+  &__submit {
+    width: 100%;
+  }
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+
+  &__title {
+    font-weight: 500;
+    line-height: 140%;
+    font-size: 1.125rem;
+    margin-right: 1rem;
+  }
+
+  &__control {
+    display: flex;
+  }
+
+  &__btn {
+    background-color: transparent;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid #121212;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    &--minus {
+      svg {
+        width: 1.25rem;
+        height: 0.125rem;
+      }
+    }
+
+    &--plus {
+      svg {
+        width: 1.25rem;
+        height: 1.25rem;
+      }
+    }
+  }
+
+  &__label {
+    width: 3.625rem;
+    border-top: 1px solid #121212;
+    border-bottom: 1px solid #121212;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__input {
+    height: 100%;
+    border: 0;
+    text-align: center;
+  }
+}
+
+.excellent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 140%;
+  }
+
+  &__value {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 140%;
+    color: #808080;
+  }
+}
+
+.slide {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  &__img {
+    aspect-ratio: 1 / 1;
+    background-image: url("../../images/img.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    border: 1px solid #d2d2d7;
+    margin-bottom: 0.5rem;
+  }
+
+  &__title {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 120%;
+    margin-bottom: 0.25rem;
+  }
+
+  &__price {
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 120%;
+    color: #808080;
+  }
+}
+
+.navigation {
+  position: absolute;
+  @include centered("y");
+  width: 100%;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+
+  &__btn {
+    background-color: transparent;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &--prev {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.5rem;
+
+  &__title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 140%;
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    @include vh();
+
+    &:checked + span::after {
+      opacity: 1;
+    }
+  }
+
+  &__text {
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 140%;
+  }
+
+  &__label {
+    display: flex;
+    align-items: center;
+
+    & + label {
+      margin-top: 1rem;
+    }
+  }
+
+  &__radio {
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 50%;
+    border: 1px solid #121212;
+    margin-right: 0.75rem;
+    background-color: #d2d2d7;
+    position: relative;
+    flex-shrink: 0;
+
+    &::after {
+      content: "";
+      position: absolute;
+      @include centered();
+      width: 0.75rem;
+      height: 0.75rem;
+      border-radius: 50%;
+      background-color: #121212;
+      transition: 0.3s;
+      opacity: 0;
+    }
+  }
+}
