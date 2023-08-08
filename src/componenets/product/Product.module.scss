@@ -16,10 +16,18 @@
 
   &__right {
     padding: 2.5rem;
+
+    @include mw($ph) {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
   }
 
   &__left {
-    width: 100%;
+    @include mw($tb) {
+      width: 100%;
+      flex-shrink: 0;
+    }
   }
 }
 

@@ -1,0 +1,19 @@
+.may {
+  &__head {
+    border-bottom: 1px solid #121212;
+  }
+
+  &__title {
+    text-align: center;
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid #121212;
+  }
+
+  &__item {
+    padding: 1.5rem;
+  }
+}

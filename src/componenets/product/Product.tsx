@@ -1,4 +1,4 @@
-import React, { FC, useState, useRef } from "react";
+import React, { FC, useState, useRef, useEffect } from "react";
 import Section from "../section/Section";
 import style from "./Product.module.scss";
 import ImgRetina from "../imgRetina/ImgRetina";
@@ -84,11 +84,104 @@ const Quantity: FC = () => {
   );
 };
 
+const AddSwiper: FC = () => {
+  let navigationPrevRef = React.useRef(null);
+  let navigationNextRef = React.useRef(null);
+  const [btnState, setBtn] = useState(false);
+
+  useEffect(() => {
+    if (navigationPrevRef.current && navigationNextRef.current) {
+      setBtn(true);
+    }
+  }, [navigationPrevRef, navigationNextRef]);
+
+  return (
+    <div className={style["add__swiper-wrap"]}>
+      {btnState && (
+        <Swiper
+          className={style.add__swiper}
+          modules={[Navigation]}
+          slidesPerView={5}
+          loop
+          navigation={{
+            nextEl: navigationNextRef.current,
+            prevEl: navigationPrevRef.current,
+          }}
+          breakpoints={{
+            1200: {
+              slidesPerView: 5,
+            },
+            769: {
+              slidesPerView: 1,
+            },
+            601: {
+              slidesPerView: 5,
+            },
+            320: {
+              slidesPerView: 1,
+            },
+          }}
+        >
+          {Array(10)
+            .fill("")
+            .map((_, i) => (
+              <SwiperSlide key={i}>
+                <Slide />
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      )}
+
+      <div className={clsx(style.add__navigation, style.navigation)}>
+        <button
+          ref={navigationPrevRef}
+          className={clsx(
+            style.navigation__btn,
+            style["navigation__btn--prev"]
+          )}
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.4312 3.86614L22.6646 15.0661C22.7979 15.1995 22.8921 15.3439 22.9473 15.4995C23.0033 15.655 23.0312 15.8217 23.0312 15.9995C23.0312 16.1773 23.0033 16.3439 22.9473 16.4995C22.8921 16.655 22.7979 16.7995 22.6646 16.9328L11.4312 28.1661C11.1201 28.4773 10.7312 28.6328 10.2646 28.6328C9.79792 28.6328 9.39792 28.4661 9.06458 28.1328C8.73125 27.7995 8.56458 27.4106 8.56458 26.9661C8.56458 26.5217 8.73125 26.1328 9.06458 25.7995L18.8646 15.9995L9.06458 6.19948C8.75347 5.88837 8.59792 5.50526 8.59792 5.05014C8.59792 4.59414 8.76458 4.19948 9.09792 3.86614C9.43125 3.53281 9.82014 3.36614 10.2646 3.36614C10.709 3.36614 11.0979 3.53281 11.4312 3.86614Z"
+              fill="#121212"
+            />
+          </svg>
+        </button>
+        <button
+          className={clsx(
+            style.navigation__btn,
+            style["navigation__btn--next"]
+          )}
+          ref={navigationNextRef}
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11.4312 3.86614L22.6646 15.0661C22.7979 15.1995 22.8921 15.3439 22.9473 15.4995C23.0033 15.655 23.0312 15.8217 23.0312 15.9995C23.0312 16.1773 23.0033 16.3439 22.9473 16.4995C22.8921 16.655 22.7979 16.7995 22.6646 16.9328L11.4312 28.1661C11.1201 28.4773 10.7312 28.6328 10.2646 28.6328C9.79792 28.6328 9.39792 28.4661 9.06458 28.1328C8.73125 27.7995 8.56458 27.4106 8.56458 26.9661C8.56458 26.5217 8.73125 26.1328 9.06458 25.7995L18.8646 15.9995L9.06458 6.19948C8.75347 5.88837 8.59792 5.50526 8.59792 5.05014C8.59792 4.59414 8.76458 4.19948 9.09792 3.86614C9.43125 3.53281 9.82014 3.36614 10.2646 3.36614C10.709 3.36614 11.0979 3.53281 11.4312 3.86614Z"
+              fill="#121212"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+  );
+};
+
 const Product: FC = () => {
-  const navigationPrevRef = React.useRef(null);
-  const navigationNextRef = React.useRef(null);
   const { data } = useAppSelector((state) => state.app);
   const { product, category } = useParams();
+
   let currentCategory: string;
   let currentProduct: string;
 
@@ -164,72 +257,7 @@ const Product: FC = () => {
           <span className={style.excellent__value}>Vase Not Included</span>
         </div>
 
-        <div className={style["add__swiper-wrap"]}>
-          <Swiper
-            className={style.add__swiper}
-            modules={[Navigation]}
-            slidesPerView={5}
-            loop
-            navigation={{
-              nextEl: navigationNextRef.current,
-              prevEl: navigationPrevRef.current,
-            }}
-            onBeforeInit={(swiper) => {
-              (swiper.navigation as any).prevEl = navigationPrevRef.current;
-              (swiper.navigation as any).nextEl = navigationNextRef.current;
-            }}
-          >
-            {Array(10)
-              .fill("")
-              .map((_, i) => (
-                <SwiperSlide key={i}>
-                  <Slide />
-                </SwiperSlide>
-              ))}
-          </Swiper>
-          <div className={clsx(style.add__navigation, style.navigation)}>
-            <button
-              ref={navigationPrevRef}
-              className={clsx(
-                style.navigation__btn,
-                style["navigation__btn--prev"]
-              )}
-            >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.4312 3.86614L22.6646 15.0661C22.7979 15.1995 22.8921 15.3439 22.9473 15.4995C23.0033 15.655 23.0312 15.8217 23.0312 15.9995C23.0312 16.1773 23.0033 16.3439 22.9473 16.4995C22.8921 16.655 22.7979 16.7995 22.6646 16.9328L11.4312 28.1661C11.1201 28.4773 10.7312 28.6328 10.2646 28.6328C9.79792 28.6328 9.39792 28.4661 9.06458 28.1328C8.73125 27.7995 8.56458 27.4106 8.56458 26.9661C8.56458 26.5217 8.73125 26.1328 9.06458 25.7995L18.8646 15.9995L9.06458 6.19948C8.75347 5.88837 8.59792 5.50526 8.59792 5.05014C8.59792 4.59414 8.76458 4.19948 9.09792 3.86614C9.43125 3.53281 9.82014 3.36614 10.2646 3.36614C10.709 3.36614 11.0979 3.53281 11.4312 3.86614Z"
-                  fill="#121212"
-                />
-              </svg>
-            </button>
-            <button
-              className={clsx(
-                style.navigation__btn,
-                style["navigation__btn--next"]
-              )}
-              ref={navigationNextRef}
-            >
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M11.4312 3.86614L22.6646 15.0661C22.7979 15.1995 22.8921 15.3439 22.9473 15.4995C23.0033 15.655 23.0312 15.8217 23.0312 15.9995C23.0312 16.1773 23.0033 16.3439 22.9473 16.4995C22.8921 16.655 22.7979 16.7995 22.6646 16.9328L11.4312 28.1661C11.1201 28.4773 10.7312 28.6328 10.2646 28.6328C9.79792 28.6328 9.39792 28.4661 9.06458 28.1328C8.73125 27.7995 8.56458 27.4106 8.56458 26.9661C8.56458 26.5217 8.73125 26.1328 9.06458 25.7995L18.8646 15.9995L9.06458 6.19948C8.75347 5.88837 8.59792 5.50526 8.59792 5.05014C8.59792 4.59414 8.76458 4.19948 9.09792 3.86614C9.43125 3.53281 9.82014 3.36614 10.2646 3.36614C10.709 3.36614 11.0979 3.53281 11.4312 3.86614Z"
-                  fill="#121212"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
+        <AddSwiper />
 
         <form id="product" className={clsx(style.add__options, style.options)}>
           <span className={style.options__title}>Price options</span>

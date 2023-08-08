@@ -15,7 +15,7 @@ const Section: FC<ISection> = ({ name, reverse, children, border }) => {
         !reverse
           ? [style[`${name}`], style["section-grid"]].join(" ")
           : [
-              style[`.${name}`],
+              style[`${name}`],
               style["section-grid"],
               style["section-grid--reverse"],
             ].join(" ")
